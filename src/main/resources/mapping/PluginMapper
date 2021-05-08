@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stan.marsh.plugin.dao">
+
+    <insert id="save" parameterType="PluginInfo">
+        insert into test.plugin values (#{id},#{name},#{desc},#{jarURL},#{className})
+    </insert>
+
+    <resultMap id="pluginInfoBean" type="PluginInfo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="desc" property="desc"/>
+        <result column="jarURL" property="jarURL"/>
+        <result column="className" property="className"/>
+    </resultMap>
+
+    <select id="listPlugins" resultMap="pluginInfoBean">
+        select * from test.plugin
+    </select>
+
+    <select id="getPluginById" resultMap="pluginInfoBean" parameterType="integer">
+        select * from test.plugin where id=#{id}
+    </select>
+</mapper>
